@@ -17,29 +17,28 @@ import java.util.Scanner;
 public class CardTrick {
 
     public static void main(String[] args) {
-        // Create an array to hold 7 random cards
         Card[] magicHand = new Card[7];
-        Random randGen = new Random();
+        Random rand = new Random();
 
         // Fill the magic hand with random cards
         for (int i = 0; i < magicHand.length; i++) {
             Card c = new Card();
-            c.setValue(randGen.nextInt(13) + 1); // values 1 to 13
-            c.setSuit(Card.SUITS[randGen.nextInt(4)]); // random suit
+            c.setValue(rand.nextInt(13) + 1); // values 1 to 13
+            c.setSuit(Card.SUITS[rand.nextInt(4)]); // random suit
             magicHand[i] = c;
         }
 
-        // Hardcoded lucky card (not used in search, just for reference)
-        Card lu_Card = new Card();
-        lu_Card.setValue(2);
-        lu_Card.setSuit("Clubs");
+        // Add one lucky card: 2 of Clubs
+        Card luckyCard = new Card();
+        luckyCard.setValue(2);
+        luckyCard.setSuit("Clubs");
 
         // Ask user for card input
         Scanner input = new Scanner(System.in);
         System.out.print("Enter card value (1-13): ");
         int value = input.nextInt();
         input.nextLine(); // clear newline
-        System.out.print("Enter card suit (Hearts,  Clubs, Spades, Diamonds): ");
+        System.out.print("Enter card suit (Hearts, Diamonds, Clubs, Spades): ");
         String suit = input.nextLine();
 
         // Search for the card in magic hand
@@ -54,9 +53,15 @@ public class CardTrick {
 
         // Report result
         if (found) {
-            System.out.println("Card found in magic hand.");
+            System.out.println("Card found in magic hand!");
         } else {
             System.out.println("Card not found.");
+        }
+
+        // Check if user picked the lucky card
+        if (value == luckyCard.getValue() &&
+            suit.equalsIgnoreCase(luckyCard.getSuit())) {
+            System.out.println("You picked the lucky card: 2 of Clubs!");
         }
     }
 }
