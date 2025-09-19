@@ -30,9 +30,9 @@ public class CardTrick {
         }
 
         // Add one lucky card: 2 of Clubs
-        Card luckyCard = new Card();
-        luckyCard.setValue(2);
-        luckyCard.setSuit("Clubs");
+        Card lc = new Card();
+        lc.setValue(2);
+        lc.setSuit("Clubs");
 
         // Ask user for card input
         Scanner input = new Scanner(System.in);
@@ -60,6 +60,6 @@ public class CardTrick {
         }
 
         // Show the lucky card
-        System.out.println("Lucky card is: " + luckyCard.getValue() + " of " + luckyCard.getSuit());
+        System.out.println("Lucky card is: " + lc.getValue() + " of " + lc.getSuit());
     }
 }
