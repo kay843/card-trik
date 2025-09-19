@@ -20,28 +20,24 @@ public class CardTrick {
         Card[] magicHand = new Card[7];
         Random rand = new Random();
 
-        // Fill the magic hand with random cards
         for (int i = 0; i < magicHand.length; i++) {
             Card c = new Card();
-            c.setValue(rand.nextInt(13) + 1); // values 1 to 13
-            c.setSuit(Card.SUITS[rand.nextInt(4)]); // random suit
+            c.setValue(rand.nextInt(13) + 1);
+            c.setSuit(Card.SUITS[rand.nextInt(4)]);
             magicHand[i] = c;
         }
 
-        // Add one lucky card: 2 of Clubs
         Card luckyCard = new Card();
         luckyCard.setValue(2);
         luckyCard.setSuit("Clubs");
 
-        // Ask user for card input
         Scanner input = new Scanner(System.in);
         System.out.print("Enter card value (1-13): ");
         int value = input.nextInt();
-        input.nextLine(); // clear newline
-        System.out.print("Enter card suit (Hearts, Diamonds, Clubs, Spades): ");
+        input.nextLine();
+        System.out.print("Enter card suit: ");
         String suit = input.nextLine();
 
-        // Search for the card in magic hand
         boolean found = false;
         for (int i = 0; i < magicHand.length; i++) {
             if (magicHand[i].getValue() == value &&
@@ -51,17 +47,7 @@ public class CardTrick {
             }
         }
 
-        // Report result
-        if (found) {
-            System.out.println("Card found in magic hand!");
-        } else {
-            System.out.println("Card not found.");
-        }
-
-        // Check if user picked the lucky card
-        if (value == luckyCard.getValue() &&
-            suit.equalsIgnoreCase(luckyCard.getSuit())) {
-            System.out.println("You picked the lucky card: 2 of Clubs!");
-        }
+        System.out.println(found ? "Card found!" : "Card not found.");
+        System.out.println("Lucky card is: " + luckyCard.getValue() + " of " + luckyCard.getSuit());
     }
 }
